@@ -108,18 +108,15 @@ Initialize data and fetch genesis:
 REPUBLIC_HOME="$HOME/.republicd"
 mkdir -p "$REPUBLIC_HOME"
 
-# Initialize (runs as root to create files, then fix ownership)
+# Initialize (runs as root to create files)
 docker run --rm \
   --user 0:0 \
   -v "$REPUBLIC_HOME:/home/republic/.republicd" \
   ghcr.io/republicai/republicd:0.1.0 \
   init my-node --chain-id raitestnet_77701-1 --home /home/republic/.republicd
 
-# Fix ownership to match container user (UID 1001)
-sudo chown -R 1001:1001 "$REPUBLIC_HOME"
-
 # Download genesis
-curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > "$REPUBLIC_HOME/config/genesis.json"
+sudo curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json -o "$REPUBLIC_HOME/config/genesis.json"
 ```
 
 Configure state sync (recommended for faster sync):
@@ -130,13 +127,16 @@ LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height)
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000))
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+sudo sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" "$REPUBLIC_HOME/config/config.toml"
 
 PEERS="517759f225c44c64fdc2fd5f4576778da4810fa5@44.199.194.212:26656,655b4c80d267633a6609d7030517a4043ffc419b@54.152.212.109:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$REPUBLIC_HOME/config/config.toml"
+sudo sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$REPUBLIC_HOME/config/config.toml"
+
+# Fix ownership to match container user (UID 1001)
+sudo chown -R 1001:1001 "$REPUBLIC_HOME"
 ```
 
 Run the node:
