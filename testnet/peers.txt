@@ -1,0 +1,12 @@
+# Republic Protocol Testnet - Persistent Peers
+# Format: node_id@ip:port
+# Updated: 2026-01-22
+
+# RPC Node 1
+517759f225c44c64fdc2fd5f4576778da4810fa5@44.199.194.212:26656
+
+# RPC Node 2
+655b4c80d267633a6609d7030517a4043ffc419b@54.152.212.109:26656
+
+# State Sync Node
+66977b35472a50bbb838401aa54a3b1ac45df5c4@3.235.172.92:26656

@@ -1,0 +1,37 @@
+{
+  "$schema": "../assetlist.schema.json",
+  "chain_name": "republicaitestnet",
+  "assets": [
+    {
+      "description": "The native staking and governance token of Republic AI testnet",
+      "denom_units": [
+        {
+          "denom": "arai",
+          "exponent": 0,
+          "aliases": ["attoreai"]
+        },
+        {
+          "denom": "rai",
+          "exponent": 18
+        }
+      ],
+      "base": "arai",
+      "name": "Republic AI",
+      "display": "rai",
+      "symbol": "RAI",
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/images/rai.png",
+        "svg": "https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/images/mainlogo.svg"
+      },
+      "coingecko_id": "",
+      "images": [
+        {
+          "png": "https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/images/rai.png"
+        },
+        {
+          "svg": "https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/images/mainlogo.svg"
+        }
+      ]
+    }
+  ]
+}

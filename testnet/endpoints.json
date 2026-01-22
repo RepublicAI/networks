@@ -1,0 +1,35 @@
+{
+  "chain_id": "raitestnet_77701-1",
+  "evm_chain_id": 77701,
+  "endpoints": {
+    "rpc": [
+      {
+        "address": "https://rpc.republicai.io",
+        "provider": "Republic Protocol"
+      }
+    ],
+    "rest": [
+      {
+        "address": "https://rest.republicai.io",
+        "provider": "Republic Protocol"
+      }
+    ],
+    "grpc": [
+      {
+        "address": "grpc.republicai.io:443",
+        "provider": "Republic Protocol"
+      }
+    ],
+    "evm_json_rpc": [
+      {
+        "address": "https://evm-rpc.republicai.io",
+        "provider": "Republic Protocol"
+      }
+    ]
+  },
+  "explorers": [],
+  "state_sync": {
+    "rpc_servers": "https://statesync.republicai.io,https://statesync.republicai.io",
+    "snapshot_provider": "https://statesync.republicai.io"
+  }
+}
