@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ARG TARGETARCH
 ARG VERSION=v0.1.0
@@ -25,4 +25,4 @@ EXPOSE 8545
 EXPOSE 8546
 
 ENTRYPOINT ["republicd"]
-CMD ["start", "--chain-id", "raitestnet_77701-1"]
+CMD ["start", "--chain-id", "raitestnet_77701-1", "--home", "/home/republic/.republicd"]
