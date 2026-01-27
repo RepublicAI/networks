@@ -27,7 +27,7 @@ Welcome to the Republic AI testnet! This guide will help you join the network as
 
 ### Prerequisites
 
-- Ubuntu 22.04 LTS
+- Ubuntu 24.04 LTS
 - 4+ CPU cores
 - 16GB+ RAM
 - 500GB+ SSD
