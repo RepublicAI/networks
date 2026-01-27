@@ -1,12 +1,11 @@
 {
-  "$schema": "../chain.schema.json",
   "chain_name": "republicaitestnet",
   "status": "live",
   "network_type": "testnet",
   "website": "https://republicai.io",
   "pretty_name": "Republic AI Testnet",
   "chain_type": "evm",
-  "chain_id": "raitestnet_77701-2",
+  "chain_id": "raitestnet_77701-1",
   "bech32_prefix": "rai",
   "daemon_name": "republicd",
   "node_home": "$HOME/.republicd",
@@ -46,13 +45,18 @@
     "seeds": [],
     "persistent_peers": [
       {
-        "id": "439ca522bcd4ea5a2fd248e3b81c8007493e5166",
-        "address": "44.203.235.31:26656",
+        "id": "e281dc6e4ebf5e32fb7e6c4a111c06f02a1d4d62",
+        "address": "3.92.139.74:26656",
         "provider": "Republic Protocol"
       },
       {
-        "id": "517759f225c44c64fdc2fd5f4576778da4810fa5",
-        "address": "44.199.194.212:26656",
+        "id": "cfb2cb90a241f7e1c076a43954f0ee6d42794d04",
+        "address": "54.173.6.183:26656",
+        "provider": "Republic Protocol"
+      },
+      {
+        "id": "dc254b98cebd6383ed8cf2e766557e3d240100a9",
+        "address": "54.227.57.160:26656",
         "provider": "Republic Protocol"
       }
     ]

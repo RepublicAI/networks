@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node data (if testing locally)
+data/
+.republicd/
+
+# Build artifacts
+*.log
