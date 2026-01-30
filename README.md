@@ -6,7 +6,7 @@ This repository contains network configurations for RepublicAI Protocol chains.
 
 | Network | Chain ID | Status | Docs |
 |---------|----------|--------|------|
-| [Testnet](./testnet/) | `raitestnet_77701-1` | Live | [Validator Guide](./testnet/README.md) |
+| [Testnet](./testnet/) | `raitestnet_77701-1` | Live | [Validator Guide](./testnet/README.md)|
 | [Mainnet](./mainnet/) | TBD | Coming Soon | - |
 
 ## Quick Links
