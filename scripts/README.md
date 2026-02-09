@@ -1,33 +1,37 @@
-# Helper Scripts
+## State Sync Bootstrapping
 
-Collection of simple helpful tools for all network users and operators.
+### [statesync.sh](https://github.com/RepublicAI/networks/blob/2460cda4a2a2258b1d0ae289a6316847acc3ec8e/scripts/statesync.sh)
 
-## State Sync Bootstrap
+Configures a `republicd` node to use state sync instead of replaying the full chain.
 
-[statesync.sh]() configures a fresh republicd node to join the network via state sync instead of replaying the full block history.
-It queries the official snapshot provider for the latest height, calculates a trust height aligned to the 1000-block snapshot interval, cross-verifies the block hash against a witness RPC node, and patches config.toml with the correct state sync parameters and persistent peers.
+**Prerequisites**
+- `republicd init <moniker>` has been run
+- `curl`, `jq`, `sed` installed
 
-Prerequisites: `republicd init <moniker>` must have been run first. Requires curl, jq, and sed.
+### Run after copying or downloading the script
 
 ```sh
-# Configure state sync with defaults (~/.republic)
-./scripts/republicsync.sh
+# Default home (~/.republic)
+./scripts/statesync.sh
 
 # Custom home directory
-./scripts/republicsync.sh --home /opt/republic
+./scripts/statesync.sh --home /opt/republic
 
-# [OPTIONAL] Wipe existing state before configuring
-./scripts/republicsync.sh --reset
+# Optional: wipe existing state
+./scripts/statesync.sh --reset
+````
+
+### Run directly without cloning
+
+```sh
+bash <(curl -sS https://raw.githubusercontent.com/RepublicAI/networks/main/scripts/statesync.sh)
+
+# With flags
+bash <(curl -sS https://raw.githubusercontent.com/RepublicAI/networks/main/scripts/statesync.sh) --reset
 ```
 
-The script connects to the following:
-Node: Snapshot provider
-Role: Serves snapshots + primary light client RPC
-Endpoint: https://state-sync-service.republicai.io
+After running, start the node:
 
----
-
-Node: RPC node
-Role: Witness for light client cross-verification
-Endpoint: https://rpc.republicai.io
-Both nodes are added as persistent peers automatically. After running the script, start the node with `republicd start`, or restart your systemd process..
+```sh
+republicd start
+```
