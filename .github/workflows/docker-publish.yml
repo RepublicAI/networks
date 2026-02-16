@@ -86,6 +86,7 @@ jobs:
           context: binaries
           platforms: linux/amd64,linux/arm64
           push: true
+          provenance: false
           tags: |
             ghcr.io/republicai/republicd:${{ steps.tag.outputs.version }}
             ghcr.io/republicai/republicd:latest
