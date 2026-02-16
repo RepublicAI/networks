@@ -33,14 +33,17 @@ Welcome to the Republic AI testnet! This guide will help you join the network as
 - 500GB+ SSD
 - curl, jq
 
+**Available builds**: `republicd-linux-amd64` (x86_64), `republicd-linux-arm64` (aarch64/Apple Silicon VMs), and `republicd-darwin-arm64` (macOS Apple Silicon). The install scripts below auto-detect your architecture, but if you need a specific build, check the [releases page](https://github.com/RepublicAI/networks/releases).
+
 ### Option 1: State Sync (Recommended)
 
 State sync allows you to quickly sync from a recent snapshot instead of syncing from genesis.
 
 ```bash
-# 1. Install republicd binary
-VERSION="v0.3.0"
-curl -L "https://github.com/RepublicAI/networks/releases/download/${VERSION}/republicd-linux-amd64" -o /tmp/republicd
+# 1. Install republicd binary (auto-detects latest release)
+VERSION=$(curl -s https://api.github.com/repos/RepublicAI/networks/releases/latest | jq -r .tag_name)
+ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')
+curl -L "https://github.com/RepublicAI/networks/releases/download/${VERSION}/republicd-linux-${ARCH}" -o /tmp/republicd
 chmod +x /tmp/republicd
 sudo mv /tmp/republicd /usr/local/bin/republicd
 
@@ -73,9 +76,10 @@ republicd start --home "$REPUBLIC_HOME" --chain-id raitestnet_77701-1
 ### Option 2: Full Sync from Genesis
 
 ```bash
-# 1. Install republicd binary
-VERSION="v0.3.0"
-curl -L "https://github.com/RepublicAI/networks/releases/download/${VERSION}/republicd-linux-amd64" -o /tmp/republicd
+# 1. Install republicd binary (auto-detects latest release)
+VERSION=$(curl -s https://api.github.com/repos/RepublicAI/networks/releases/latest | jq -r .tag_name)
+ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')
+curl -L "https://github.com/RepublicAI/networks/releases/download/${VERSION}/republicd-linux-${ARCH}" -o /tmp/republicd
 chmod +x /tmp/republicd
 sudo mv /tmp/republicd /usr/local/bin/republicd
 
@@ -96,10 +100,10 @@ republicd start --home "$REPUBLIC_HOME" --chain-id raitestnet_77701-1
 
 ### Option 3: Docker
 
-Pull the published image:
+Pull the published image (uses latest tag, or pin a specific version):
 
 ```bash
-docker pull ghcr.io/republicai/republicd:v0.3.0
+docker pull ghcr.io/republicai/republicd:latest
 ```
 
 Initialize data and fetch genesis:
@@ -112,7 +116,7 @@ mkdir -p "$REPUBLIC_HOME"
 docker run --rm \
   --user 0:0 \
   -v "$REPUBLIC_HOME:/home/republic/.republic" \
-  ghcr.io/republicai/republicd:v0.3.0 \
+  ghcr.io/republicai/republicd:latest \
   init my-node --chain-id raitestnet_77701-1 --home /home/republic/.republic
 
 # Download genesis
@@ -145,7 +149,7 @@ Run the node:
 docker run -d --name republicd \
   --network host \
   -v "$REPUBLIC_HOME:/home/republic/.republic" \
-  ghcr.io/republicai/republicd:v0.3.0 \
+  ghcr.io/republicai/republicd:latest \
   start --home /home/republic/.republic --chain-id raitestnet_77701-1
 ```
 
