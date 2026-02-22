@@ -31,7 +31,7 @@ go version
 
 ### Install binary
 ```
-wget https://github.com/RepublicAI/networks/releases/download/v0.2.0/republicd-linux-amd64 -O republicd
+wget https://github.com/RepublicAI/networks/releases/download/v0.1.0/republicd-linux-amd64 -O republicd
 chmod +x republicd
 mv republicd $HOME/go/bin/
 ```
@@ -63,8 +63,8 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"2500000000arai\"/" 
 
 ### Add Peerr ( if needed )
 ```
-peers="e281dc6e4ebf5e32fb7e6c4a111c06f02a1d4d62@3.92.139.74:26656,cfb2cb90a241f7e1c076a43954f0ee6d42794d04@54.173.6.183:26656,dc254b98cebd6383ed8cf2e766557e3d240100a9@54.227.57.160:26656,a5d2fe7d932c3b6f7c9633164f102315d1f575c6@195.201.160.23:13356"
-sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.republic/config/config.toml
+peers="$(curl -sS https://rpc-t.republic.vinjan-inc.com:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.republic/config/config.toml
 ```
 
 ### create service file and start node
@@ -93,6 +93,28 @@ sudo systemctl daemon-reload
 sudo systemctl enable republicd
 sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
+```
+- Stop ( Upgade to v0.2.1 )
+```
+wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-linux-amd64 -O republicd
+chmod +x republicd
+```
+```
+sudo systemctl stop republicd
+mv republicd $HOME/go/bin/
+```
+```
+sudo systemctl restart republicd
+sudo journalctl -u republicd -f -o cat
+```
+- Stop ( Upgrade to v0.3.0 )
+```
+wget https://github.com/RepublicAI/networks/releases/download/v0.3.0/republicd-linux-amd64 -O republicd
+chmod +x republicd
+```
+```
+sudo systemctl stop republicd
+mv republicd $HOME/go/bin/
 ```
 
 ### Use Snapshot for faster sync
