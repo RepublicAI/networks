@@ -21,6 +21,12 @@ This repository contains network configurations for RepublicAI Protocol chains.
 - **Testnet Faucet**: Available via the Points portal (account required)
 
 
+## Community Tools
+
+| Tool | Language | Description |
+|------|----------|-------------|
+| [republic-sdk](https://github.com/eren-karakus0/republic-sdk) | TypeScript | SDK for key management, transaction signing, staking, governance & CLI |
+
 ## Resources
 
 - [Website](https://republicai.io) - Official website
