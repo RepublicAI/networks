@@ -31,7 +31,9 @@ chmod +x check_health.sh
 3. Aracı Başlatın
 Tüm verileri görmek için bu komutu yazın:
 
+
 ./check_health.sh
+
 
 📊 Doğrulayıcı (Validator) Bilgileri
 Bu node ve araç seti aşağıdaki kimlik bilgileriyle yönetilmektedir:
@@ -42,8 +44,11 @@ Cüzdan Adresi: rai1kyvgpy7yt6350xkh3h4s5cdm8uhuj3sqhjds9t
 
 Node Tipi: Validator Candidate (Testnet)
 
+
+
 📝 Teknik Rapor (report.md)
 Sunucunun donanım özellikleri, çalışma stabilitesi ve ağ performansı hakkındaki detaylı teknik verilere bu klasördeki report.md dosyasından ulaşabilirsiniz.
 
 Developed as a contribution to the RepublicAI Developer Community by goldify.
+
 
