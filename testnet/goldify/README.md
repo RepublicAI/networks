@@ -15,3 +15,22 @@ The `check_health.sh` script provides a quick summary of:
 
 ---
 *Contribution for RepublicAI Developer Role*
+
+# 🚀 RepublicAI Node Operations - goldify
+
+This repository contains custom scripts and health reports for the **RepublicAI Testnet (raitestnet_77701-1)**, managed by **goldify**.
+
+## 🛠 Tools & Monitoring
+
+### 1. Node Health Checker (`check_health.sh`)
+A lightweight bash script designed to monitor the status of the RepublicAI node and system resources in real-time.
+
+**Features:**
+- **System Metrics:** CPU Load, RAM usage, and Disk space availability.
+- **Node Status:** Fetches current block height and synchronization status (`catching_up`) via local RPC.
+- **Error Handling:** Alerts if the RPC is unreachable or the node process is down.
+
+**How to Execute:**
+```bash
+chmod +x check_health.sh
+./check_health.sh
