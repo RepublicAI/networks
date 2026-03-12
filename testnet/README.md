@@ -245,3 +245,6 @@ sudo systemctl start republicd
 
 - GitHub Issues: https://github.com/RepublicAI/networks/issues
 - Discord: https://discord.com/invite/republicai
+
+### 🛠 Community Tools
+- [Telegram Node Monitor Bot](https://github.com/ntllinh2511/republic-ai-node-monitor) by @alexvnn: A professional Python bot for monitoring node sync, validator health, and proactive missed-block alerts.
