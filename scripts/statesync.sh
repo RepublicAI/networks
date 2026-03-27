@@ -13,10 +13,10 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 # Network constants
 # ---------------------------------------------------------------------------
-SNAP_RPC="https://state-sync-service.republicai.io"
+SNAP_RPC="https://statesync.republicai.io"
 WITNESS_RPC="https://rpc.republicai.io"
-SNAP_PEER="f13fec7efb7538f517c74435e082c7ee54b4a0ff@54.204.89.111:26656"
-RPC_PEER="cd10f1a4162e3a4fadd6993a24fd5a32b27b8974@3.94.103.50:26656"
+SNAP_PEER="66977b35472a50bbb838401aa54a3b1ac45df5c4@3.235.172.92:26656"
+RPC_PEER="e281dc6e4ebf5e32fb7e6c4a111c06f02a1d4d62@3.92.139.74:26656"
 
 # Snapshot interval on the provider is 1000 blocks (~83 min at 5s blocks).
 # We round the trust height down to the nearest 1000 so it aligns with an
@@ -125,21 +125,21 @@ echo "  Trust hash:   $TRUST_HASH"
 echo "Cross-verifying against witness RPC..."
 
 witness_json=$(curl -sS --fail --max-time 10 "${WITNESS_RPC}/block?height=${TRUST_HEIGHT}") || {
-  echo "Warning: could not reach witness RPC for verification (continuing anyway)"
-  witness_json=""
+  echo "ERROR: could not reach witness RPC (${WITNESS_RPC}) for verification."
+  echo "Aborting -- cannot verify trust hash without an independent witness."
+  echo "Check that the witness RPC is reachable and try again."
+  exit 1
 }
 
-if [[ -n "$witness_json" ]]; then
-  WITNESS_HASH=$(jq -r '(.result.block_id.hash // .block_id.hash) // empty' <<<"$witness_json")
-  if [[ "$WITNESS_HASH" != "$TRUST_HASH" ]]; then
-    echo "HASH MISMATCH between provider and witness at height $TRUST_HEIGHT"
-    echo "  Provider: $TRUST_HASH"
-    echo "  Witness:  $WITNESS_HASH"
-    echo "Aborting -- investigate before proceeding."
-    exit 1
-  fi
-  echo "  Verified: hashes match."
+WITNESS_HASH=$(jq -r '(.result.block_id.hash // .block_id.hash) // empty' <<<"$witness_json")
+if [[ "$WITNESS_HASH" != "$TRUST_HASH" ]]; then
+  echo "HASH MISMATCH between provider and witness at height $TRUST_HEIGHT"
+  echo "  Provider: $TRUST_HASH"
+  echo "  Witness:  $WITNESS_HASH"
+  echo "Aborting -- investigate before proceeding."
+  exit 1
 fi
+echo "  Verified: hashes match."
 
 # ---------------------------------------------------------------------------
 # Patch config.toml

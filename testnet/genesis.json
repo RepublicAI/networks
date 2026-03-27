@@ -4,7 +4,7 @@
   "genesis_time": "2026-01-26T19:30:07.141149728Z",
   "chain_id": "raitestnet_77701-1",
   "initial_height": 1,
-  "app_hash": null,
+  "app_hash": "",
   "app_state": {
     "07-tendermint": null,
     "auth": {

@@ -59,6 +59,21 @@
         "id": "dc254b98cebd6383ed8cf2e766557e3d240100a9",
         "address": "54.227.57.160:26656",
         "provider": "Republic Protocol"
+      },
+      {
+        "id": "66977b35472a50bbb838401aa54a3b1ac45df5c4",
+        "address": "3.235.172.92:26656",
+        "provider": "Republic Protocol"
+      },
+      {
+        "id": "2c9641378e9dacc49b269b0efb807b475d033e56",
+        "address": "89.167.15.180:26656",
+        "provider": "Conqueror"
+      },
+      {
+        "id": "1999732342c6c89de4112f82008766bf3342aba2",
+        "address": "104.152.210.127:55856",
+        "provider": "OneNov"
       }
     ]
   },

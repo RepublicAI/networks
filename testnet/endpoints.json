@@ -29,7 +29,7 @@
   },
   "explorers": [],
   "state_sync": {
-    "rpc_servers": "https://statesync.republicai.io,https://statesync.republicai.io",
+    "rpc_servers": "https://statesync.republicai.io,https://rpc.republicai.io",
     "snapshot_provider": "https://statesync.republicai.io"
   }
 }
